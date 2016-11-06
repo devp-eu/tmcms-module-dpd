@@ -1,0 +1,21 @@
+{
+  "name": "devp-eu/tmcms-module-dpd-delivery",
+  "type": "library",
+  "description": "Module DPD Delivery for TMCms",
+  "keywords": ["module", "dpd", "delivery", "tmcms"],
+  "homepage": "http://devp.eu/",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Vadims Petrusevs",
+      "email": "info@devp.eu",
+      "homepage": "http://devp.eu/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "TMCms\\Modules\\DPD\\": "src"
+    }
+  }
+}
