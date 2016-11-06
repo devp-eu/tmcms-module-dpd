@@ -10,8 +10,9 @@ class DpdService
 {
     private $is_test_mode = true;
     private $dpd_hosts = array(
-        0 => 'ws.dpd.com/services/', // production
-        1 => 'wstest.dpd.com/services/' // test
+        // TODO get addresses
+        0 => 'http://wstest.dpd.ru/services/nl', // production
+        1 => 'http://wstest.dpd.ru/services/nl' // test
     );
 
     /** @var SoapClient */
@@ -28,8 +29,9 @@ class DpdService
         $this->connectToDpd();
 
         // Change required methods here
-        $responce = $this->callDpdGeneratePackageNumbers();
+        $response = $this->callDpdGeneratePackageNumbers();
 
+        dump($response);
     }
 
     private function connectToDpd()
@@ -37,7 +39,6 @@ class DpdService
         $host = $this->dpd_hosts[(int)$this->is_test_mode];
 
         try {
-            // Soap-подключение к сервису
             $this->SOAP_client = new SoapClient('http://' . $host);
         } catch (Exception $e) {
             throw new Exception('SOAP client can not connect. ' . $e->getMessage());
@@ -63,6 +64,46 @@ class DpdService
 
     private function getFormattedDeliveryData()
     {
-        return $this->delivery;
+        // TODO
+        $AdditionalServiceVO = [];
+
+        $ParcelVO = [
+            'parcelId' => '',
+            'parcelReferenceNumber' => '',
+            'dimensionsHeight' => '',
+            'dimensionsWidth' => '',
+            'dimensionsLength' => '',
+            'weight' => '',
+            'description' => '',
+        ];
+
+        $ShipmentVO = [
+            'shipmentId' => '', // Leave empty to create new DPD or fill in if update existing
+            'shipshipmentReferenceNumbermentId' => '',
+            'payerId' => '',
+            'senderAddressId' => '',
+            'receiverName' => '',
+            'receiverFirmName' => '',
+            'receiverCountryCode' => '',
+            'receiverZipCode' => '',
+            'receiverCity' => '',
+            'receiverStreet' => '',
+            'receiverHouseNo' => '',
+            'receiverPhoneNo' => '',
+            'mainServiceCode' => '',
+            'additionalServices' => $AdditionalServiceVO,
+            'additionalServicesparcels' => $ParcelVO,
+        ];
+
+        $data = [
+            'wsUserName' => '',
+            'wsPassword' => '',
+            'wsLang' => '',
+            'appliactionType' => '',
+            'shipment' => $ShipmentVO,
+            'priceOption' => '',
+        ];
+
+        return $data;
     }
 }
