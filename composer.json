@@ -15,7 +15,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "TMCms\\Modules\\DPD\\": "src"
+      "TMCms\\Modules\\Dpd\\": "src"
     }
   }
 }
