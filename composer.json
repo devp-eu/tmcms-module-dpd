@@ -1,5 +1,5 @@
 {
-  "name": "devp-eu/tmcms-module-dpd-delivery",
+  "name": "devp-eu/tmcms-module-dpd",
   "type": "library",
   "description": "Module DPD Delivery for TMCms",
   "keywords": ["module", "dpd", "delivery", "tmcms"],
